@@ -14,7 +14,9 @@
 
  * Email : zinnahan0@gmail.com
  * Blog : [Lazini Blog](http://lazini.tistory.com)
- * Youtube : [Lazini Youtube](http://lazini.youtube.com)
+ * Youtube
+    - [레이지니의 보드게임 이야기](https://www.youtube.com/channel/UCVYbF0ZapsWEj45EWl5DKCQ)
+    - [레이지니의 구독](https://www.youtube.com/channel/UCkeUvXsQXCQtW1rlsIf-Zfw)
 
 ---
 ## 물리학 경력
@@ -34,10 +36,10 @@
  * 2003 보드카페 체험, 할리갈리, 젠가 등
  * 2004 아임더보스, 달무티, 보난자 경험
  * 2015 "화이트채플에서 온 편지"로 보드게임 다시 시작
- * 2016 역삼아지트 보드게임 모임 운영
-     - https://ysazit.tistory.com
- * 2017 모드니 헤이븐 (Modnii Haven) 보드게임 및 마작 모임 운영     
-     - https://modnii.tistory.com/
- * 2018~ 사당 사랑방 보드게임 및 마작 모임 운영
-     - https://sarangbanggame.tistory.com/
- * 2019~ 직장인들의 건전한 모임 "이교시" 보드게임 모임 리더
+ * 2016 역삼아지트 보드게임 모임 운영 (![블로그 운영중단](https://ysazit.tistory.com))
+
+ * 2017 모드니 헤이븐 (Modnii Haven) 보드게임 및 마작 모임 운영 (![블로그](https://modnii.tistory.com))
+
+ * 2018~현재 사당 사랑방 보드게임 및 마작 모임 운영 (ᆽ![블로그](https://sarangbanggame.tistory.com))
+
+ * 2019~현재 직장인들의 건전한 모임 "이교시" 보드게임 모임 리더 (![이교시](http://2gyosi.nsion.net))
