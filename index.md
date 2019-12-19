@@ -36,10 +36,10 @@
  * 2003 보드카페 체험, 할리갈리, 젠가 등
  * 2004 아임더보스, 달무티, 보난자 경험
  * 2015 "화이트채플에서 온 편지"로 보드게임 다시 시작
- * 2016 역삼아지트 보드게임 모임 운영 (![블로그 운영중단](https://ysazit.tistory.com))
+ * 2016 역삼아지트 보드게임 모임 운영 ([블로그](https://ysazit.tistory.com))
 
- * 2017 모드니 헤이븐 (Modnii Haven) 보드게임 및 마작 모임 운영 (![블로그](https://modnii.tistory.com))
+ * 2017 모드니 헤이븐 (Modnii Haven) 보드게임 및 마작 모임 운영 ([블로그](https://modnii.tistory.com))
 
- * 2018~현재 사당 사랑방 보드게임 및 마작 모임 운영 (ᆽ![블로그](https://sarangbanggame.tistory.com))
+ * 2018~현재 사당 사랑방 보드게임 및 마작 모임 운영 (ᆽ[블로그](https://sarangbanggame.tistory.com))
 
- * 2019~현재 직장인들의 건전한 모임 "이교시" 보드게임 모임 리더 (![이교시](http://2gyosi.nsion.net))
+ * 2019~현재 직장인들의 건전한 모임 "이교시" 보드게임 모임 리더 ([이교시](http://2gyosi.nsion.net))
