@@ -40,6 +40,6 @@
 
  * 2017 모드니 헤이븐 (Modnii Haven) 보드게임 및 마작 모임 운영 ([블로그](https://modnii.tistory.com))
 
- * 2018~현재 사당 사랑방 보드게임 및 마작 모임 운영 (ᆽ[블로그](https://sarangbanggame.tistory.com))
+ * 2018~현재 사당 사랑방 보드게임 및 마작 모임 운영 ([블로그](https://sarangbanggame.tistory.com))
 
  * 2019~현재 직장인들의 건전한 모임 "이교시" 보드게임 모임 리더 ([이교시](http://2gyosi.nsion.net))
