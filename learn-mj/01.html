@@ -1,15 +1,52 @@
 <html>
 <body>
-<div>테스트 문서</div>
+<div>마작 학습용</div>
 <div id="hands"></div>
-<div>하단</div>
+<div>하단2</div>
 
+<img src="img/0m.gif">
+<img src="img/1m.gif">
 
 
 <script>
-var hands = document.getElementById('hands');
-var img = '<img src="img/back.gif">';
-img = hands.innerHTML;
+
+// 마작패 종류 입력
+var tilem=[];
+var tiles=[];
+var tilep=[];
+for (var i = 1; i < 10; i++) {
+   tilem[i] = '<img src="img/'+i+'m.gif">';
+   tilep[i] = '<img src="img/'+i+'p.gif">';
+   tiles[i] = '<img src="img/'+i+'s.gif">';
+}
+var tilez=[];
+for (var i = 1; i < 8; i++) {
+   tilez[i] = '<img src="img/'+i+'z.gif">';
+}
+
+var hands = [];
+for (var i = 1; i < 8; i++) {
+   hands[i-1] = tiles[i];
+}
+
+//var rann = Math.floor((Math.random()*9)+1);
+
+// 패 넘버 -> 패 모양
+function() {
+
+}
+
+// 손패 출력 (자동 정렬)
+var handhtml = "";
+for (var i = 0; i < hands.length; i++) {
+  handhtml += hands[i];
+}
+
+var hands =
+document.getElementById('hands');
+hands.innerHTML = handhtml;
+
+
 </script>
 
 </body>
