@@ -3,52 +3,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div>마작 학습용</div>
+<div id="head">청일 3~7 7장 연습</div>
+
 <div id="hands"></div>
-<div>하단2</div>
 
-<img src="img/0m.gif">
-<img src="img/1m.gif">
-
+<div id="foot">하단2</div>
 
 <script>
+/**********************
+*  Only tongsu mode
+**********************/
+var modeone = 1;
+var onecolor = Math.floor(Math.random()*3);
+var modemiddle = 3;
+var handsize = 7;
+/**********************
+* 마작패 종류 코드
+* 만수 1~9 : 1~9
+* 통수 1~9 : 11~19
+* 삭수 1~9 : 21~29
+* 동남서북 백발중 : 31~37
+**********************/
+var tilemt = []; // 패산
+var tileimg = []; // tile code -> tile img src
 
-// 마작패 종류 입력
-var tilem=[];
-var tiles=[];
-var tilep=[];
-for (var i = 1; i < 10; i++) {
-   tilem[i] = '<img src="img/'+i+'m.gif">';
-   tilep[i] = '<img src="img/'+i+'p.gif">';
-   tiles[i] = '<img src="img/'+i+'s.gif">';
+for (var i = 0; i < 4; i++) {
+  if(modeone & i == onecolor) {
+
+   var tilecate;
+   if(i == 0) { tilecate = "m"; }
+   else if(i == 1) { tilecate = "p"; }
+   else if(i == 2) { tilecate = "s"; }
+   else if(i == 3) { tilecate = "z"; }
+   else { tilecate = ""; }
+   // 수패
+   if(tilecate != "z") {
+     for (var j = 0; j < 9; j++) {
+       if(modemiddle & (j+1 >= modemiddle) & (j+1 <= 9-modemiddle)) {
+         var tcode = i*10+j+1;
+         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+         var textnum = j+1;
+         tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
+       }
+     }
+   // 자패
+   } else {
+     for (var j = 0; j < 7; j++) {
+       var tcode = i*10+j+1;
+       tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+       var textnum = j+1;
+       tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
+     }
+   }
+  }
 }
-var tilez=[];
-for (var i = 1; i < 8; i++) {
-   tilez[i] = '<img src="img/'+i+'z.gif">';
+
+/**********************
+* Shuffle function and Sort function
+* Shuffles array in place. ES6 version
+* @param {Array} a items An array containing the items.
+**********************/
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }
+
+function tilesort(a) {
+    a.sort(function(a, b){return a - b});
+}
+
+/**********************
+**********************/
+shuffle(tilemt);
 
 var hands = [];
-for (var i = 1; i < 8; i++) {
-   hands[i-1] = tiles[i];
+for (var i = 0; i < handsize; i++) {
+   hands[i] = tilemt.pop();
 }
+tilesort(hands);
 
 //var rann = Math.floor((Math.random()*9)+1);
 
-// 패 넘버 -> 패 모양
-function num2gif() {
-
-}
 
 // 손패 출력 (자동 정렬)
 var handhtml = "";
 for (var i = 0; i < hands.length; i++) {
-  handhtml += hands[i];
+  handhtml += tileimg[hands[i]];
 }
 
 var hands =
 document.getElementById('hands');
 hands.innerHTML = handhtml;
-
 
 </script>
 
