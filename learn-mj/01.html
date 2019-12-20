@@ -15,7 +15,11 @@
 **********************/
 var modeone = 1;
 var onecolor = Math.floor(Math.random()*3);
-var modemiddle = 3;
+
+var modemiddle = 1;
+var middleup = 7;
+var middledw = 3;
+
 var handsize = 7;
 /**********************
 * 마작패 종류 코드
@@ -39,7 +43,7 @@ for (var i = 0; i < 4; i++) {
    // 수패
    if(tilecate != "z") {
      for (var j = 0; j < 9; j++) {
-       if(modemiddle & (j+1 >= modemiddle) & (j+1 <= 9-modemiddle)) {
+       if(modemiddle & (j+1 >= middledw) & (j+1 <= middleup)) {
          var tcode = i*10+j+1;
          tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
          var textnum = j+1;
