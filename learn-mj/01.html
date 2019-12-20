@@ -3,69 +3,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div id="head">청일 3~7 7장 연습</div>
+<div>청일 3~7 7장 연습</div>
 
 <div id="hands"></div>
 
-<div id="foot">하단2</div>
+<div>대기패
+  <input id='showbtn' type="button" value="보이기" onclick="div_show('foot');"/>
+  <input id='hidebtn' type="button" value="숨기기" onclick="div_hide('foot');"/>
+</div>
+<div id="foot"></div>
+<hr>
+<div id="log">로그기록</div>
+
+<script type="text/javascript"> // showbtn hidebtn 설정
+   function div_show(id) { //보이기
+    document.getElementById(id).style.display = "block";
+    document.getElementById('hidebtn').style.display = "block";
+    document.getElementById('showbtn').style.display = "none";
+   }
+   function div_hide(id) { //숨기기
+    document.getElementById(id).style.display = "none";
+    document.getElementById('hidebtn').style.display = "none";
+    document.getElementById('showbtn').style.display = "block";
+   }
+   div_hide('foot');
+</script>
 
 <script>
+document.getElementById("log").innerText = "";
+function log(a){
+  document.getElementById("log").innerText += a+"\n";
+}
 /**********************
-*  Only tongsu mode
+*  Initial Value
 **********************/
-var modeone = 1;
-var onecolor = Math.floor(Math.random()*3);
-
-var modemiddle = 1;
-var middleup = 7;
-var middledw = 3;
-
-var handsize = 7;
+var handsize = 13;
 /**********************
-* 마작패 종류 코드
+*  Only 7tile mode
+**********************/
+var tile7mode = 1;
+var tile10mode = 0;
+var tilemin, tilemax, onecolor;
+/**********************
+* 마작패 종류 코드 -> 마작패 이미지
 * 만수 1~9 : 1~9
 * 통수 1~9 : 11~19
 * 삭수 1~9 : 21~29
 * 동남서북 백발중 : 31~37
 **********************/
-var tilemt = []; // 패산
+var alltcode = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,31,32,33,34,35,36,37];
 var tileimg = []; // tile code -> tile img src
-
-for (var i = 0; i < 4; i++) {
-  if(modeone & i == onecolor) {
-
+for (var i = 0; i < 4; i++) { // tileimg 만들기
    var tilecate;
    if(i == 0) { tilecate = "m"; }
    else if(i == 1) { tilecate = "p"; }
    else if(i == 2) { tilecate = "s"; }
    else if(i == 3) { tilecate = "z"; }
    else { tilecate = ""; }
-   // 수패
+
    if(tilecate != "z") {
      for (var j = 0; j < 9; j++) {
-       if(modemiddle & (j+1 >= middledw) & (j+1 <= middleup)) {
-         var tcode = i*10+j+1;
-         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
-         var textnum = j+1;
-         tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
-       }
+       var textnum = j+1;
+       var tcode = i*10+j+1;
+       tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
      }
-   // 자패
    } else {
      for (var j = 0; j < 7; j++) {
-       var tcode = i*10+j+1;
-       tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
        var textnum = j+1;
+       var tcode = i*10+j+1;
        tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
      }
    }
+}
+
+var tilemt = []; // 패산
+var handtiles = []; // 손패
+
+/*********************
+* 패산 만들기
+**********************/
+if(tile7mode) { // 7개 청일 모드
+  onecolor = Math.floor(Math.random()*3);
+  //onecolor = 1; // easy mode only Tong
+  handsize = 7;
+  tilemin = 3;
+  tilemax = 7;
+  var i = onecolor;
+  for (var j = tilemin-1; j < tilemax ; j++) { // 패산 만들기
+     var tcode = i*10+j+1;
+     tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+  //   log(tcode+" into tilemt(7mode)");
   }
+
+  var ran1 = 30+Math.floor(Math.random()*4+1);
+  var ran2 = 30+Math.floor(Math.random()*3+5);
+  handtiles.push(ran1,ran1,ran1);
+  handtiles.push(ran2,ran2,ran2);
+} else if(tile10mode) {
+  onecolor = Math.floor(Math.random()*3);
+  onecolor = 1; // easy mode only Tong
+  handsize = 10;
+  tilemin = 2;
+  tilemax = 8;
+  var i = onecolor;
+  for (var j = tilemin-1; j < tilemax ; j++) { // 패산 만들기
+     var tcode = i*10+j+1;
+     tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+  }
+
+  var ran1 = 30+Math.floor(Math.random()*4+1);
+  handtiles.push(ran1,ran1,ran1);
+} else { // 패산 만들기
+  for (var i = 0; i < 4; i++) {
+     if(tilecate < 3) {
+       for (var j = 0; j < 9; j++) {
+         var tcode = i*10+j+1;
+         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+       }
+     } else {
+       for (var j = 0; j < 7; j++) {
+         var tcode = i*10+j+1;
+         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+       }
+     }
+   }
 }
 
 /**********************
-* Shuffle function and Sort function
-* Shuffles array in place. ES6 version
-* @param {Array} a items An array containing the items.
+* shuffle 패산 섞는 용도
+* tilesort 타일들을 순서대로 정렬
+# mySum array의 합을 reduce로 사용하는 용도
 **********************/
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -74,34 +141,201 @@ function shuffle(a) {
     }
     return a;
 }
-
 function tilesort(a) {
     a.sort(function(a, b){return a - b});
 }
+function mySum(total,num) {
+  return total + num;
+}
+/**********************
+* findrontile : 손패를 넣으면 텐파이 확인후 론패 뽑음
+* winninghand : 14개의 패를 넣으면 화료인지 확인
+* bodycheck : 머리를 제외한 몸통이 모두 만들어지는지 확인
+**********************/
+function bodycheck(counts) {
+  //  log("BODY:"+counts);
+  if(counts.reduce(mySum) == 0) { return 1; }
+
+  var man = counts.slice(1,10);
+  var ping = counts.slice(11,20);
+  var sou = counts.slice(21,30);
+  for(i = 31; i < 38; i++) { // 자패 몸통 확인
+    if(counts[i] != 0 & counts[i] != 3) {
+    //  log(i+"자패 몸통 미완성"+counts[i]);
+      return 0;
+    }
+  }
+
+  var mans = man.reduce(mySum);
+  var pings = ping.reduce(mySum);
+  var sous = sou.reduce(mySum);
+  //  log("수패 합 : "+mans+","+pings+","+sous);
+  if(mans%3 > 0 | pings%3 > 0 | sous%3 > 0) {
+    //log("수패 숫자 안맞음."+mans+","+pings+","+sous);
+    return 0;
+  }
+
+  for(let icode of alltcode) {  // 커쯔 체크
+    if(counts[icode] >= 3) {
+      counts[icode] -= 3;
+      if(bodycheck(counts)) {
+        return 1;
+      } else {
+        counts[icode] += 3;
+      }
+    }
+  }
+  var allstr = [1,2,3,4,5,6,7,11,12,13,14,15,16,17,21,22,23,24,25,26,27];
+  for(let istr of allstr) {
+    if(counts[istr] >=1 & counts[istr+1] >=1 & counts[istr+2] >= 1) {
+      counts[istr] -= 1;
+      counts[istr+1] -= 1;
+      counts[istr+2] -= 1;
+      if(bodycheck(counts)) {
+        return 1;
+      } else {
+        counts[istr] += 1;
+        counts[istr+1] += 1;
+        counts[istr+2] += 1;
+      }
+    }
+
+  }
+}
+function winninghand(tiles) {  // 14개의 패로 완성패인지 체크
+  //  log("HAND:"+tiles);
+  var size = tiles.length;
+  //  log("\nwinninghand size = "+size);
+  if(size == 14 | size == 11 | size == 8) {
+    var tilecount = new Array(40);
+    tilecount.fill(0);
+
+    var rmtiles = tiles.slice();
+    for (var i = 0; i < size; i++) { // rmtiles -> tilecount
+      var tcode = rmtiles.shift();
+      tilecount[tcode] += 1;
+      //      log("tcode = "+tcode);
+      //     log("tilecount[tcode] = "+tilecount[tcode]);
+    }
+
+    var chito = 7;
+    for (var i = 0; i < tilecount.length; i++) { // test chitoitsu
+      if(tiles[i] == 2) { chito -= 1; }
+    }
+    if(chito==0) { return 1; }
+
+    // 머리 체크
+    var headtiles = [];
+    var nohead = 1;
+    for (var i = 0; i < tilecount.length; i++) { // headtiles count
+      if(tilecount[i]>=2) {
+        headtiles.push(i);
+        nohead = 0;
+      }
+    }
+    if(nohead) {
+      return 0;
+    } else {
+      for(let ihead of headtiles) { // for each head
+        //log("  Head:"+ihead);
+        var dtilecount = tilecount.slice();
+        dtilecount[ihead] -= 2;
+        if(bodycheck(dtilecount)) {
+          return 1;
+        }
+      }
+    }
+  } else {
+    log("winninghand: Hand size is invalid.")
+  }
+}
+function findrontile(tiles) {
+  var wintiles = [];
+  var sametile = [];
+  var pretile = "";
+  var nsame = 0;
+  for (var i = 0; i < tiles.length; i++) {
+    if(pretile==tiles[i]) {
+      nsame += 1;
+      if(nsame == 4) {
+        sametile.push(tiles[i]);
+      }
+    } else {
+      nsame = 1;
+      pretile = tiles[i];
+    }
+  }
+  for(let iron of alltcode) {
+    var notileinmt = 0;
+    //log("--TEST: "+iron);
+    for(let tile4 of sametile) {
+      if(tile4 == iron) {
+        notileinmt = 1;
+      }
+    }
+    if(notileinmt==0) {
+      var dtiles=tiles.slice();
+      dtiles.push(iron);
+      if(winninghand(dtiles)) {
+        //log("WIN :"+iron)
+        wintiles.push(iron);
+      }
+    }
+  }
+  //  log("wintiles = "+wintiles);
+  return wintiles;
+}
+
 
 /**********************
+*  패산 섞기 & 손패 뽑기+정렬
 **********************/
 shuffle(tilemt);
 
-var hands = [];
-for (var i = 0; i < handsize; i++) {
-   hands[i] = tilemt.pop();
+function tsumo(hands,num) {
+  for (var i = 0; i < num; i++) {
+    var tsumotile = tilemt.shift();
+    hands.push(tsumotile);
+  }
 }
-tilesort(hands);
-
-//var rann = Math.floor((Math.random()*9)+1);
-
-
-// 손패 출력 (자동 정렬)
-var handhtml = "";
-for (var i = 0; i < hands.length; i++) {
-  handhtml += tileimg[hands[i]];
+function ctsumo(hands) {  // 테스트용 손패
+    var tsumotile = [3,3,3,3,4,4,4,4,5,5];
+    for (let tsu of tsumotile) {
+      hands.push(tsu);
+    }
+    //log(hands[4]);
 }
+//ctsumo(handtiles);
+tsumo(handtiles,handsize);
+tilesort(handtiles);
 
-var hands =
-document.getElementById('hands');
-hands.innerHTML = handhtml;
 
+/**********************
+// 손패 출력
+**********************/
+function showtiles(tiles,target) {
+  var handhtml = "";
+  for (var i = 0; i < tiles.length; i++) {
+    handhtml += tileimg[tiles[i]];
+    //    log("handtileimg "+tileimg[tiles[i]]);
+  }
+  document.getElementById(target).innerHTML = handhtml;
+}
+showtiles(handtiles,"hands")
+
+var rontiles = findrontile(handtiles);
+if(rontiles.length > 0) {
+  showtiles(rontiles,'foot');
+} else {
+  document.getElementById('foot').innerText = "No Tenpai";
+  log("no tenpai");
+}
+/**********************
+// 기타 출력
+**********************/
+log("");
+log("remaining tilemt : "+tilemt);
+log("handtile codes : "+ handtiles);
 </script>
 
 </body>
