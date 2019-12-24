@@ -304,7 +304,7 @@ function findrontile(tiles) {
 }
 
 function findinmt(tiles,mts) {
-    log("findinmt");
+    //log("findinmt");
     var tilecount = new Array(40);
     tilecount.fill(0);
     var rmtiles = mts.slice();
@@ -315,15 +315,15 @@ function findinmt(tiles,mts) {
       var tcode = rmtiles.shift();
       tilecount[tcode] += 1;
     }
-    log(tiles);
+    //log(tiles);
     for(let itile of tiles) {
-      log(itile+"-"+tilecount[itile]);
+      //log(itile+"-"+tilecount[itile]);
       for(var i=0; i< tilecount[itile]; i++) {
         outtiles.push(itile);
       }
     }
-    log(outtiles);
-    log("findinmt end");
+    //log(outtiles);
+    //log("findinmt end");
     return outtiles;
 }
 
