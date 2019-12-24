@@ -1,15 +1,36 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .button2 {background-color: #008CBA;} /* Blue */
+  .button3 {background-color: #f44336;} /* Red */
+  .button4 {background-color: #e7e7e7; color: black;} /* Gray */
+  .button5 {background-color: #555555;} /* Black */
+  </style>
 </head>
 <body>
 <div>청일 3~7 7장 연습</div>
 
 <div id="hands"></div>
-
-<div>대기패
-  <input id='showbtn' type="button" value="보이기" onclick="div_show('foot');"/>
-  <input id='hidebtn' type="button" value="숨기기" onclick="div_hide('foot');"/>
+<br>
+<br>
+<div >대기패
+  <input style="float:right" class="button2" id='showbtn' type="button" value="보이기" onclick="div_show('foot');"/>
+  <input style="float:right" class="button2" id='hidebtn' type="button" value="숨기기" onclick="div_hide('foot');"/>
 </div>
 <div id="foot"></div>
 <hr>
