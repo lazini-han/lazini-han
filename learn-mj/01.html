@@ -55,25 +55,23 @@ var alltcode = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,2
 var tileimg = []; // tile code -> tile img src
 for (var i = 0; i < 4; i++) { // tileimg 만들기
    var tilecate;
+   var tileattr = "width='20px' src='img/";
    if(i == 0) { tilecate = "m"; }
    else if(i == 1) { tilecate = "p"; }
    else if(i == 2) { tilecate = "s"; }
    else if(i == 3) { tilecate = "z"; }
    else { tilecate = ""; }
 
-   if(tilecate != "z") {
-     for (var j = 0; j < 9; j++) {
-       var textnum = j+1;
-       var tcode = i*10+j+1;
-       tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
-     }
+   if(tilecate == "z") {
+     var endtile = 7;
    } else {
-     for (var j = 0; j < 7; j++) {
+     var endtile = 9;
+   }
+     for (var j = 0; j < endtile; j++) {
        var textnum = j+1;
        var tcode = i*10+j+1;
-       tileimg[tcode] = '<img src="img/'+textnum+tilecate+'.gif">';
+       tileimg[tcode] = "<img "+tileattr+textnum+tilecate+".gif'>";
      }
-   }
 }
 
 var tilemt = []; // 패산
