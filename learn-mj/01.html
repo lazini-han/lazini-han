@@ -33,7 +33,7 @@
 <br>
 <div >대기패
   <input style="float:right" class="button2" id='showbtn' type="button" value="보이기" onclick="div_show('foot');"/>
-  <input style="float:right" class="button2" id='hidebtn' type="button" value="숨기기" onclick="div_hide('foot');"/>
+  <input style="float:right" class="button3" id='hidebtn' type="button" value="숨기기" onclick="div_hide('foot');"/>
 </div>
 <div id="foot"></div>
 <hr>
@@ -95,6 +95,7 @@ var handtiles = []; // 손패
 /*********************
 * 패산 만들기
 **********************/
+var hiddenmt = [];
 if(tile7mode) { // 7개 청일 모드
   onecolor = Math.floor(Math.random()*3);
   //onecolor = 1; // easy mode only Tong
@@ -112,6 +113,15 @@ if(tile7mode) { // 7개 청일 모드
   var ran2 = 30+Math.floor(Math.random()*3+5);
   handtiles.push(ran1,ran1,ran1);
   handtiles.push(ran2,ran2,ran2);
+
+  for (var j = 1; j < tilemin+1 ; j++) {
+     var tcode = i*10+j+1;
+     hiddenmt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+  }
+  for (var j = tilemax+1; j < 10 ; j++) {
+     var tcode = i*10+j+1;
+     hiddenmt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
+  }
 } else if(tile10mode) {
   onecolor = Math.floor(Math.random()*3);
   onecolor = 1; // easy mode only Tong
@@ -255,6 +265,7 @@ function winninghand(tiles) {  // 14개의 패로 완성패인지 체크
     log("winninghand: Hand size is invalid.")
   }
 }
+
 function findrontile(tiles) {
   var wintiles = [];
   var sametile = [];
@@ -292,6 +303,29 @@ function findrontile(tiles) {
   return wintiles;
 }
 
+function findinmt(tiles,mts) {
+    log("findinmt");
+    var tilecount = new Array(40);
+    tilecount.fill(0);
+    var rmtiles = mts.slice();
+    var outtiles = [];
+
+    for (var i = 0; i < mts.length; i++) { // rmtiles -> tilecount
+      //log(i);
+      var tcode = rmtiles.shift();
+      tilecount[tcode] += 1;
+    }
+    log(tiles);
+    for(let itile of tiles) {
+      log(itile+"-"+tilecount[itile]);
+      for(var i=0; i< tilecount[itile]; i++) {
+        outtiles.push(itile);
+      }
+    }
+    log(outtiles);
+    log("findinmt end");
+    return outtiles;
+}
 
 /**********************
 *  패산 섞기 & 손패 뽑기+정렬
@@ -327,11 +361,17 @@ function showtiles(tiles,target) {
   }
   document.getElementById(target).innerHTML = handhtml;
 }
+
 showtiles(handtiles,"hands")
 
 var rontiles = findrontile(handtiles);
+for(let htile of hiddenmt) {
+  tilemt.push(htile);
+}
+var rontilesinmt = findinmt(rontiles,tilemt);
+
 if(rontiles.length > 0) {
-  showtiles(rontiles,'foot');
+  showtiles(rontilesinmt,'foot');
 } else {
   document.getElementById('foot').innerText = "No Tenpai";
   log("no tenpai");
