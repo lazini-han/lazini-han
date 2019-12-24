@@ -116,11 +116,11 @@ if(tile7mode) { // 7개 청일 모드
   handtiles.push(ran1,ran1,ran1);
   handtiles.push(ran2,ran2,ran2);
 
-  for (var j = 1; j < tilemin+1 ; j++) {
+  for (var j = 0; j < tilemin-1 ; j++) {
      var tcode = i*10+j+1;
      hiddenmt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
   }
-  for (var j = tilemax+1; j < 10 ; j++) {
+  for (var j = tilemax; j < 9 ; j++) {
      var tcode = i*10+j+1;
      hiddenmt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
   }
@@ -318,14 +318,21 @@ function findinmt(tiles,mts) {
       tilecount[tcode] += 1;
     }
     //log(tiles);
+
+    var handhtml = ""; // for print
     for(let itile of tiles) {
       //log(itile+"-"+tilecount[itile]);
+      handhtml += "<div>";
       for(var i=0; i< tilecount[itile]; i++) {
         outtiles.push(itile);
+        //log(itile);
+        handhtml += tileimg[itile];
       }
+      handhtml += "</div>";
     }
     //log(outtiles);
     //log("findinmt end");
+    document.getElementById("foot").innerHTML = handhtml;
     return outtiles;
 }
 
@@ -373,7 +380,7 @@ for(let htile of hiddenmt) {
 var rontilesinmt = findinmt(rontiles,tilemt);
 
 if(rontiles.length > 0) {
-  showtiles(rontilesinmt,'foot');
+  //showtiles(rontilesinmt,'foot');
 } else {
   document.getElementById('foot').innerText = "No Tenpai";
   log("no tenpai");
