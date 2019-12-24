@@ -52,25 +52,16 @@ var tilemin, tilemax, onecolor;
 * 동남서북 백발중 : 31~37
 **********************/
 var alltcode = [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,31,32,33,34,35,36,37];
+var tiletype = ["m", "p","s","z"];
+var endtiles = [9,9,9,7];
 var tileimg = []; // tile code -> tile img src
-for (var i = 0; i < 4; i++) { // tileimg 만들기
-   var tilecate;
-   var tileattr = "width='7%' src='img/";
-   if(i == 0) { tilecate = "m"; }
-   else if(i == 1) { tilecate = "p"; }
-   else if(i == 2) { tilecate = "s"; }
-   else if(i == 3) { tilecate = "z"; }
-   else { tilecate = ""; }
+var tileattr = "width='7%' src='img/";
 
-   if(tilecate == "z") {
-     var endtile = 7;
-   } else {
-     var endtile = 9;
-   }
-     for (var j = 0; j < endtile; j++) {
+for (var i = 0; i < 4; i++) { // tileimg 만들기
+     for (var j = 0; j < endtiles[i]; j++) {
        var textnum = j+1;
        var tcode = i*10+j+1;
-       tileimg[tcode] = "<img "+tileattr+textnum+tilecate+".gif'>";
+       tileimg[tcode] = "<img "+tileattr+textnum+tiletype[i]+".gif'>";
      }
 }
 
@@ -113,16 +104,9 @@ if(tile7mode) { // 7개 청일 모드
   handtiles.push(ran1,ran1,ran1);
 } else { // 패산 만들기
   for (var i = 0; i < 4; i++) {
-     if(tilecate < 3) {
-       for (var j = 0; j < 9; j++) {
-         var tcode = i*10+j+1;
-         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
-       }
-     } else {
-       for (var j = 0; j < 7; j++) {
-         var tcode = i*10+j+1;
-         tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
-       }
+     for (var j = 0; j < endtiles[i]; j++) {
+       var tcode = i*10+j+1;
+       tilemt.push(tcode,tcode,tcode,tcode); // 같은 패 4개씩
      }
    }
 }
